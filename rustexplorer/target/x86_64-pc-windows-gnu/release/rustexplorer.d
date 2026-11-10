@@ -1,0 +1,1 @@
+/workspace/rustexplorer/target/x86_64-pc-windows-gnu/release/rustexplorer.exe: /workspace/rustexplorer/src/fsinfo.rs /workspace/rustexplorer/src/main.rs /workspace/rustexplorer/src/ops.rs /workspace/rustexplorer/src/tui.rs

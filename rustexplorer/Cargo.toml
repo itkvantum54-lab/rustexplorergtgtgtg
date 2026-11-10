@@ -1,0 +1,30 @@
+[package]
+name = "rustexplorer"
+version = "0.1.0"
+edition = "2021"
+authors = ["you"]
+description = "Лёгкая и быстрая альтернатива explorer.exe (файловый менеджер) на Rust"
+license = "MIT"
+
+# Оптимизации под размер/скорость бинарника — «для оптимизации»
+[profile.release]
+opt-level = 3          # максимальная оптимизация по скорости
+lto = "fat"            # link-time optimization по всему графу
+codegen-units = 1      # одна единица кода => лучше инлайнинг
+panic = "abort"        # меньше кода раскрутки стека
+strip = true           # вырезание символов из бинарника
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }   # разбор аргументов CLI
+chrono = "0.4"                                     # даты/время файлов
+crossterm = "0.28"                                 # TUI: курсор, цвета, ввод
+dirs = "6"                                         # домашние папки, корзины и т.п.
+regex = "1"                                        # фильтры имён
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = [
+    "Win32_Storage_FileSystem",
+    "Win32_Foundation",
+    "Win32_UI_Shell",
+    "Win32_System_Console",
+] }
